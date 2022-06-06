@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "configure",
+            "type": "shell",
+            "command": "cmake . -B build -D CMAKE_BUILD_TYPE=Debug",
+            "group": "build"
+        },
+        {   // Execute cette tache apres Configure
+            "label": "build",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "build"],
+            "group": "build",
+            "dependsOn":["configure"]
+        },
+        {   // Execute cette tache apres Configure & build
+            "label": "install stuff Debug",
+            "type": "shell",
+            "command": "cp",
+            "args": ["./build/src/stuff", "./bin/Debug/stuff"],
+            "group": "build",
+            "dependsOn":["configure", "build"]
+        }
+    ]
+}
