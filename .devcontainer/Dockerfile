@@ -4,18 +4,25 @@ FROM debian:latest
 #ARG USERNAME=david
 #ARG USER_UID=1000
 #ARG USER_GID=$USER_UID
-#ARG BASH_IT_VERSION=v2.1.4
-#ARG GITSTATUS_VERSION=v2.1.4
 
-RUN apt-get -y update && apt-get install -y
+RUN apt-get -y update && apt-get -y upgrade && apt-get install -y \
 #installation composant c++ (gcc-10)
-RUN apt-get install -y build-essential
+    && apt-get install -y build-essential \
 #installation du debugger
-RUN apt-get install -y gdb
+    && apt-get install -y gdb \
 # Installation Git
-RUN apt-get install -y git
+    && apt-get install -y git \
 # Installation CMake
-RUN apt-get install -y cmake
+    && apt-get install -y cmake \
+# Installation rapidjson
+    && apt-get install -y rapidjson-dev \
+# Installation expat
+    && apt-get install -y expat \
+# Installation xsd
+    && apt-get install -y xsdcxx \
+## Installation du prompt bash avec intégration git
+    && git clone https://github.com/Bash-it/bash-it.git ~/.bash_it \
+    && ~/.bash_it/install.sh --silent
 #
 ## Installation d'utilitaires
 ## RUN apt-get install -y jq xmlstarlet \
@@ -24,16 +31,6 @@ RUN apt-get install -y cmake
 ##  && wget -nv -O/usr/bin/mlr https://github.com/johnkerl/miller/releases/download/v5.10.2/mlr.linux.x86_64 \
 ##  && chmod +x /usr/bin/mlr
 #
-## Installation du prompt bash avec intégration git
-#RUN mkdir -p ~/.bash_it \
-# && git clone https://github.com/Bash-it/bash-it.git ~/.bash_it \
-# && cd ~/.bash_it \
-# && git checkout tags/$BASH_IT_VERSION \
-# && ~/.bash_it/install.sh --silent \
-# RUN mkdir -p ~/gitstatus \
-# && echo 'source ~/gitstatus/gitstatus.prompt.sh' >> ~/.bashrc \
-# && mkdir -p ~/.cache/gitstatus \
-# && git clone https://github.com/romkatv/gitstatus.git ~/.cache/gitstatus
 ## && echo 'alias docker="sudo -E docker"' >> ~/.bashrc \
 ## && echo 'alias docker-compose="sudo -E docker-compose"' >> ~/.bashrc
 #
