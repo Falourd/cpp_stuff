@@ -1,0 +1,1 @@
+The objective of this project is to setup a generic init cpp project
