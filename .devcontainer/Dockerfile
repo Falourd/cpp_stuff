@@ -22,7 +22,9 @@ RUN apt-get -y update && apt-get -y upgrade && apt-get install -y \
     && apt-get install -y xsdcxx \
 ## Installation du prompt bash avec intégration git
     && git clone https://github.com/Bash-it/bash-it.git ~/.bash_it \
-    && ~/.bash_it/install.sh --silent
+    && ~/.bash_it/install.sh --silent \
+## Install curl for .NET
+    && apt-get install -y curl
 #
 ## Installation d'utilitaires
 ## RUN apt-get install -y jq xmlstarlet \

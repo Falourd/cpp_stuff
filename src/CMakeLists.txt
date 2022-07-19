@@ -5,4 +5,6 @@ SET(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_CXX_STANDARD_REQUIRED True)
 
 ADD_EXECUTABLE ( stuff 
-                main.cpp)
+                main.cpp
+                Chap1/basic.hpp Chap1/basic.cpp
+                )

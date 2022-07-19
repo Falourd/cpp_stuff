@@ -1,7 +1,7 @@
-#include <iostream>
-#include <string>
+#include "Chap1/basic.hpp"
 
-int main() {
-    std::cout << "Hello Falourd\n";
+int main()
+{
+    chapOne();
     return 0;
 }
