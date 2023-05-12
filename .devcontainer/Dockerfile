@@ -1,11 +1,15 @@
-#FROM gcc:11.2
 FROM debian:latest
 
-#ARG USERNAME=david
-#ARG USER_UID=1000
-#ARG USER_GID=$USER_UID
 
-RUN apt-get -y update && apt-get -y upgrade && apt-get install -y \
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+RUN apt-get -y update \
+    && apt-get -y upgrade \
+    && apt-get -y install \
+# Installation de sudo, non present pas defaut
+    && apt-get -y install sudo -y \
 #installation composant c++ (gcc-10)
     && apt-get install -y build-essential \
 #installation du debugger
@@ -24,37 +28,13 @@ RUN apt-get -y update && apt-get -y upgrade && apt-get install -y \
     && git clone https://github.com/Bash-it/bash-it.git ~/.bash_it \
     && ~/.bash_it/install.sh --silent \
 ## Install curl for .NET
-    && apt-get install -y curl
-#
-## Installation d'utilitaires
-## RUN apt-get install -y jq xmlstarlet \
-##  && apt-get clean all \
-##  && rm -rf /var/cache/apt \
-##  && wget -nv -O/usr/bin/mlr https://github.com/johnkerl/miller/releases/download/v5.10.2/mlr.linux.x86_64 \
-##  && chmod +x /usr/bin/mlr
-#
-## && echo 'alias docker="sudo -E docker"' >> ~/.bashrc \
-## && echo 'alias docker-compose="sudo -E docker-compose"' >> ~/.bashrc
-#
-
-#
-## Create the user
-#RUN groupadd --gid $USER_GID $USERNAME \
-# && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-# # Ajout du support sudo (pour pouvoir lancer "sudo docker" par exemple)
-# && apt-get update -y \
-# && apt-get install -y sudo \
-# && apt-get clean all \
-# && rm -rf /var/cache/apt \
-# && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-# && chmod 0440 /etc/sudoers.d/$USERNAME
-#
-#
-#USER $USERNAME
-#
-#WORKDIR /workspace
-
-# [Optional] Uncomment this section to install additional packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
-
+    && apt-get install -y curl \
+## Install htop
+    && apt-get install -y htop \
+## install psql
+    && apt-get install -y postgresql \
+## installation de la locale en_US.UTF-8 non presente par defaut
+    && apt-get install -y locales \
+    && sed -i -e "s/# $LANG.*/$LANG UTF-8/" /etc/locale.gen \
+    && dpkg-reconfigure --frontend=noninteractive locales
+    
