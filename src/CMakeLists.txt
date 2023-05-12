@@ -7,4 +7,5 @@ SET(CMAKE_CXX_STANDARD_REQUIRED True)
 ADD_EXECUTABLE ( stuff 
                 main.cpp
                 Chap1/basic.hpp Chap1/basic.cpp
+                Chap2/defined_types.hpp Chap2/defined_types.cpp
                 )
