@@ -19,7 +19,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "install stuff Debug"
+            "preLaunchTask": "build"
         }
     ]
 }

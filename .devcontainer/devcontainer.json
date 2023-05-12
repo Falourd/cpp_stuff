@@ -8,16 +8,26 @@
 		// Use Debian 11, Debian 9, Ubuntu 18.04 or Ubuntu 21.04 on local arm64/Apple Silicon
 	},
 	"runArgs": [],
-
+	"workspaceFolder": "/workspaces/cpp_stuff/",
 	// Set *default* container specific settings.json values on container create.
-	"settings": {},
+	/*
+	"settings": {
+		"terminal.integrated.profiles.linux": 
+		{
+			"bash": {
+				"path": "/bin/bash"
+			}
+		},
+		"terminal.integrated.defaultProfile.linux": "bash"
+	},
+	*/
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-vscode.cpptools",
 		"twxs.cmake",
 		"ms-vscode.cmake-tools"
-	],
+	]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
